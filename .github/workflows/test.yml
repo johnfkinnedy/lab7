@@ -13,7 +13,7 @@ jobs:
     
     env:
         Solution_Name: lab5connorcole.sln
-        Test_Project_Path: TestProject1.csproj
+        Test_Project_Path: TestProject1/TestProject1.csproj
 
     steps:
         - name: Checkout repository
