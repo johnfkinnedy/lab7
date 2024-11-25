@@ -12,23 +12,24 @@ jobs:
     runs-on: windows-latest
     
     env:
-        Solution_Name: lab5connorcole.sln
+        Solution_Name: .\lab5connorcole.sln
         Test_Project_Path: lab7\TestProject1\TestProject1.csproj
 
     steps:
         - name: Checkout repository
           uses: actions/checkout@v4
   
-        # Runs a single command using the runners shell
         - name: Install .Net core
           uses: actions/setup-dotnet@v4
           with:
             dotnet-version: '6.0.x'
             
         - name: Restore packages
-          run: dotnet restore ${{ env.Solution_Name }}
+          run: dotnet restore
 
-
+        - name: Build Solution
+          run: dotnet build ${{ env.Solution_Name }} --configuration Release --no-restore
+          
         - name: Test and publish results
           run: dotnet test ${{ env.Test_Project_Path }} --no-restore --verbosity normal
           
